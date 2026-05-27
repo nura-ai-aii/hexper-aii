@@ -1,0 +1,475 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --neon-cyan: #00ffe1;
+  --neon-blue: #0066ff;
+  --bg-deep: #020617;
+  --glass-bg: rgba(10, 15, 30, 0.6);
+  --text-main: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-cyan) transparent;
+}
+
+body {
+  margin: 0;
+  font-family: 'Rajdhani', sans-serif;
+  background-image: url('./images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+.App {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Holographic Overlay */
+.App::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.2;
+}
+
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(15px);
+  padding: 20px;
+  cursor: pointer;
+}
+
+.image-header {
+  width: 100%;
+  max-width: 512px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+.image-status {
+  color: var(--neon-cyan);
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 255, 225, 0.5);
+}
+
+.image-close-btn {
+  background: rgba(0, 255, 225, 0.1);
+  border: 1px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.image-close-btn:hover {
+  background: var(--neon-cyan);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.image-container img, .media-video {
+  max-width: 100%;
+  max-height: 80vh;
+  border: 1px solid rgba(0, 255, 225, 0.3);
+  box-shadow: 0 0 50px rgba(0, 255, 225, 0.2);
+  border-radius: 4px;
+}
+
+.media-video {
+  box-shadow: 0 0 70px rgba(0, 132, 255, 0.3);
+  border-color: rgba(0, 132, 255, 0.4);
+}
+
+.image-container {
+  border: 1px solid var(--neon-cyan);
+  padding: 5px;
+  box-shadow: 0 0 50px rgba(0, 255, 225, 0.3);
+  max-width: 90vw;
+  max-height: 70vh;
+  background: #000;
+  cursor: default;
+}
+
+.image-container img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.image-footer {
+  margin-top: 20px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--neon-cyan);
+  opacity: 0.6;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+/* ──────────────────────────────────────────────
+   MOBILE & RESPONSIVE LAYOUT STYLES
+   ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 85px 15px 100px 15px; /* Adjust top and bottom padding for navbar and bottom dock */
+    gap: 20px;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Stacking Order of Draggable components on Mobile */
+  #plasma-orb {
+    order: 1;
+    margin: 15px 0 !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  #terminal {
+    order: 2;
+    width: 100% !important;
+    max-width: 500px !important;
+  }
+
+  #status-terminal {
+    order: 3;
+    width: 100% !important;
+    max-width: 500px !important;
+  }
+
+  #status-hud {
+    order: 4;
+    width: 100% !important;
+    max-width: 500px !important;
+  }
+
+  /* Reposition Floating Language & Model Selectors under Top Navbar on Mobile */
+  #lang-selector {
+    position: fixed !important;
+    top: 75px !important;
+    right: 15px !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    z-index: 1001 !important;
+  }
+
+  #model-selector {
+    position: fixed !important;
+    top: 75px !important;
+    right: 75px !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    z-index: 1001 !important;
+  }
+
+  /* Make sure components are styled beautifully on mobile */
+  .terminal-container {
+    width: 100% !important;
+    padding: 20px !important;
+    gap: 15px !important;
+  }
+
+  .terminal-content {
+    font-size: 16px !important;
+  }
+
+  .status-terminal {
+    width: 100% !important;
+  }
+
+  .status-container {
+    width: 100% !important;
+    clip-path: none !important; /* Avoid clipping status items on small widths */
+    border-right: none !important;
+    border-top: 1px solid rgba(0, 255, 225, 0.4) !important;
+    border-bottom: 1px solid rgba(0, 255, 225, 0.4) !important;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   BACKGROUND ASSISTANT / WAKE WORD ASSISTANT MODE
+   ────────────────────────────────────────────── */
+.App.background-assistant-mode {
+  background: radial-gradient(circle at center, rgba(10, 20, 45, 0.98) 0%, rgba(2, 6, 23, 1) 100%) !important;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.App.background-assistant-mode::after {
+  opacity: 0.1 !important; /* Dim holographic scanlines slightly */
+}
+
+/* Mobile-specific centering for background assistant mode */
+@media (max-width: 768px) {
+  .App.background-assistant-mode {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    padding: 0 !important;
+    gap: 30px !important;
+    overflow: hidden !important;
+  }
+
+  .App.background-assistant-mode #plasma-orb {
+    position: relative !important;
+    transform: none !important;
+    bottom: auto !important;
+    right: auto !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .App.background-assistant-mode #bg-toggle-selector {
+    position: relative !important;
+    transform: none !important;
+    bottom: auto !important;
+    right: auto !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   NEURAL STARTUP SEQUENCE CINEMATIC STYLE
+   ────────────────────────────────────────────── */
+.startup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.96);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  animation: fadeOutStartup 0.4s ease-in 2.45s forwards;
+}
+
+@keyframes fadeOutStartup {
+  to { opacity: 0; visibility: hidden; }
+}
+
+.startup-container {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(10, 20, 45, 0.4);
+  border: 1px solid rgba(0, 255, 225, 0.25);
+  border-top: 3px solid #00ffe1;
+  padding: 30px;
+  box-shadow: 0 0 50px rgba(0, 255, 225, 0.1), inset 0 0 30px rgba(0, 0, 0, 0.6);
+  clip-path: polygon(0 0, 96% 0, 100% 6%, 100% 100%, 4% 100%, 0 94%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.startup-header {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #00ffe1;
+  text-shadow: 0 0 10px rgba(0, 255, 225, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px dashed rgba(0, 255, 225, 0.2);
+  padding-bottom: 12px;
+}
+
+.startup-dot-glow {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ffe1;
+  box-shadow: 0 0 10px #00ffe1;
+  animation: pulseStartup 1s infinite alternate;
+}
+
+@keyframes pulseStartup {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+.startup-terminal-box {
+  min-height: 180px;
+  background: rgba(0, 5, 15, 0.7);
+  border: 1px solid rgba(0, 255, 225, 0.1);
+  padding: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.startup-log-line {
+  color: rgba(255, 255, 255, 0.85);
+  animation: logLineIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.terminal-prompt {
+  color: #00ffe1;
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+.log-highlight {
+  color: #00ffe1 !important;
+  font-size: 16px;
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(0, 255, 225, 0.8);
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+
+@keyframes logLineIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.startup-loader-wrap {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: visible;
+  position: relative;
+}
+
+.startup-progress-bar {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #0084ff, #00ffe1);
+  box-shadow: 0 0 12px #00ffe1;
+  transition: width 0.05s linear;
+}
+
+.startup-loader-glow {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00ffe1;
+  box-shadow: 0 0 15px #00ffe1, 0 0 25px #00ffe1;
+  transition: left 0.05s linear;
+  pointer-events: none;
+}
+
+.startup-footer {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ──────────────────────────────────────────────
+   MOOD SPECIFIC SYSTEM OVERRIDES (HW MODE)
+   ────────────────────────────────────────────── */
+body.mood-hw-body {
+  background-image: url('./images/hw-background.png') !important;
+  --neon-cyan: #ff5500 !important;
+  --neon-blue: #ffaa00 !important;
+  scrollbar-color: #ff5500 transparent !important;
+}
+
+body.mood-hw-body .startup-container {
+  border-top-color: #ff5500 !important;
+  box-shadow: 0 0 50px rgba(255, 85, 0, 0.15), inset 0 0 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+body.mood-hw-body .startup-header {
+  color: #ff5500 !important;
+  text-shadow: 0 0 10px rgba(255, 85, 0, 0.4) !important;
+}
+
+body.mood-hw-body .startup-dot-glow {
+  background: #ff5500 !important;
+  box-shadow: 0 0 10px #ff5500 !important;
+}
+
+body.mood-hw-body .startup-progress-bar {
+  background: linear-gradient(90deg, #ffaa00, #ff5500) !important;
+  box-shadow: 0 0 12px #ff5500 !important;
+}
+
+body.mood-hw-body .startup-loader-glow {
+  background: #ff5500 !important;
+  box-shadow: 0 0 15px #ff5500, 0 0 25px #ff5500 !important;
+}
+
+body.mood-hw-body .terminal-prompt {
+  color: #ff5500 !important;
+}
+
+body.mood-hw-body .log-highlight {
+  color: #ff5500 !important;
+  text-shadow: 0 0 12px rgba(255, 85, 0, 0.8) !important;
+}
+
+/* HW Custom collapsed ambient background */
+.App.background-assistant-mode.mood-hw {
+  background: radial-gradient(circle at center, rgba(35, 12, 2, 0.98) 0%, rgba(12, 4, 0, 1) 100%) !important;
+}
+

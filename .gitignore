@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+back-end/node_modules/
+# Build output
+dist/
+build/
+# Environment files
+.env
+# OS generated files
+Thumbs.db
+.DS_Store
+# Logs
+*.log
+# VSCode settings
+.vscode/
+# npm debug
+npm-debug.log*
+# Yarn lockfile (if present)
+yarn.lock

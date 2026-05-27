@@ -1,0 +1,785 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+.futuristic-navbar {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 1300px;
+  height: 85px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 1000;
+  font-family: 'Rajdhani', sans-serif;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+/* ─── FUTURISTIC FRAME & SVG OVERLAY ─────────────────── */
+.navbar-frame-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.navbar-svg-frame {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.85));
+}
+
+/* Bottom Hanging Tab Drawer */
+.navbar-bottom-plate {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -2;
+}
+
+.bottom-plate-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bottom-plate-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(0, 245, 255, 0.7);
+  text-shadow: 0 0 5px rgba(0, 245, 255, 0.3);
+  padding-bottom: 2px;
+}
+
+.bottom-plate-content .divider {
+  color: rgba(168, 85, 247, 0.4);
+}
+
+.bottom-plate-content .secure-connection {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(168, 85, 247, 0.8);
+}
+
+.bottom-plate-content .lock-icon {
+  width: 9px;
+  height: 9px;
+  stroke-width: 2.5px;
+}
+
+/* ─── BRANDING STYLE (LEFT) ─────────────────────────── */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.02);
+}
+
+.hex-logo-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+}
+
+.hex-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.4) 0%, transparent 70%);
+  filter: blur(4px);
+  animation: pulse-glow 2.5s infinite ease-in-out;
+}
+
+.navbar-logo-img {
+  height: 38px;
+  width: auto;
+  z-index: 1;
+  filter: drop-shadow(0 0 8px rgba(0, 245, 255, 0.6)) drop-shadow(0 0 16px rgba(168, 85, 247, 0.4));
+}
+
+.brand-text-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brand-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.brand-ai {
+  background: linear-gradient(135deg, #00F5FF, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  text-shadow: none;
+}
+
+.brand-subtitle {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 2.2px;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* ─── NAVIGATION CORE TABS (CENTER) ──────────────────── */
+.navbar-tabs-container {
+  z-index: 2;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-tab-btn {
+  background: rgba(10, 15, 30, 0.4);
+  border: 1px solid rgba(0, 245, 255, 0.1);
+  border-radius: 6px;
+  padding: 8px 18px;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 80px;
+  height: 52px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+}
+
+.nav-tab-btn:hover {
+  background: rgba(0, 245, 255, 0.05);
+  border-color: rgba(0, 245, 255, 0.3);
+  color: #00F5FF;
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.1);
+}
+
+.nav-tab-btn.active {
+  background: rgba(0, 245, 255, 0.08);
+  border-color: rgba(0, 245, 255, 0.5);
+  color: #00F5FF;
+  box-shadow: inset 0 0 10px rgba(0, 245, 255, 0.1), 0 0 15px rgba(0, 245, 255, 0.15);
+  text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+}
+
+.tab-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.nav-tab-btn:hover .tab-icon {
+  transform: translateY(-2px);
+}
+
+.tab-labels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.tab-title {
+  text-transform: uppercase;
+}
+
+/* Dynamic Live Status Subtitle */
+.tab-subtitle {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+
+.tab-subtitle.online {
+  color: #00ff80;
+  text-shadow: 0 0 4px rgba(0, 255, 128, 0.4);
+}
+
+.tab-subtitle.offline {
+  color: #ff4444;
+  text-shadow: 0 0 4px rgba(255, 68, 68, 0.4);
+}
+
+.status-indicator-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.tab-subtitle.online .status-indicator-dot {
+  animation: tab-pulse 1.5s infinite;
+}
+
+/* Active bottom glowing bar */
+.active-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 2px;
+  background-color: #00F5FF;
+  box-shadow: 0 -2px 10px #00F5FF, 0 0 15px #00F5FF;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-tab-btn.active .active-indicator {
+  opacity: 1;
+}
+
+/* ─── SYSTEM ACTION BUTTONS (RIGHT) ─────────────────── */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 2;
+}
+
+/* Log In Outlined Button */
+.btn-login {
+  background: rgba(168, 85, 247, 0.05);
+  border: 1.5px solid rgba(168, 85, 247, 0.5);
+  border-radius: 8px;
+  color: #c084fc;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  height: 38px;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: #a855f7;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.btn-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Sign Up Slanted Tech Gradient Button */
+.btn-signup {
+  background: linear-gradient(135deg, #0055ff, #7a00ff);
+  border: none;
+  color: #ffffff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  height: 38px;
+  position: relative;
+  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 85, 255, 0.35);
+}
+
+.btn-signup:hover {
+  background: linear-gradient(135deg, #00F5FF, #a855f7);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.signup-arrow {
+  width: 11px;
+  height: 11px;
+  transition: transform 0.3s ease;
+}
+
+.btn-signup:hover .signup-arrow {
+  transform: translateX(3px);
+}
+
+/* ─── TOAST NOTIFICATION STYLING ────────────────────── */
+.high-tech-alert-toast {
+  position: fixed;
+  top: 115px;
+  right: 40px;
+  width: 320px;
+  height: 48px;
+  background: rgba(3, 7, 18, 0.9);
+  border: 1px solid rgba(0, 245, 255, 0.4);
+  border-left: 4px solid #00F5FF;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  z-index: 99999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(0, 245, 255, 0.15);
+  font-family: 'Rajdhani', sans-serif;
+  letter-spacing: 1px;
+  animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 15px rgba(0, 245, 255, 0.1);
+  pointer-events: none;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toast-dot-blink {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #00F5FF;
+  box-shadow: 0 0 8px #00F5FF;
+  animation: tab-pulse 1s infinite;
+}
+
+.toast-message {
+  color: #E6F1FF;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* ─── HIGH-TECH MODALS STYLE ────────────────────────── */
+.sci-fi-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(1, 3, 10, 0.65);
+  backdrop-filter: blur(15px);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade-overlay 0.3s ease;
+}
+
+.sci-fi-modal-content {
+  width: 440px;
+  background: rgba(3, 7, 18, 0.95);
+  border: 1.5px solid rgba(0, 245, 255, 0.45);
+  border-radius: 8px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 245, 255, 0.15);
+  padding: 30px;
+  font-family: 'Rajdhani', sans-serif;
+  letter-spacing: 1px;
+  position: relative;
+  clip-path: polygon(0% 0%, 93% 0%, 100% 8%, 100% 100%, 7% 100%, 0% 92%);
+  animation: modal-zoom 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sci-fi-modal-content.owner-modal {
+  border-color: rgba(168, 85, 247, 0.55);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 30px rgba(168, 85, 247, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid rgba(0, 245, 255, 0.15);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(0, 245, 255, 0.8);
+  letter-spacing: 2px;
+}
+
+.owner-modal .modal-header {
+  color: rgba(168, 85, 247, 0.9);
+  border-bottom-color: rgba(168, 85, 247, 0.2);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: #ff4444;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* About Mini Rotating Orb */
+.system-orb-mini {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.orb-core {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00F5FF 0%, transparent 80%);
+  box-shadow: 0 0 15px #00F5FF;
+}
+
+.orb-ring {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 1px dashed rgba(168, 85, 247, 0.7);
+  animation: ring-spin 8s infinite linear;
+}
+
+/* Bio Owner Scanner details */
+.avatar-placeholder {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1.5px solid rgba(168, 85, 247, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(168, 85, 247, 0.85);
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.avatar-placeholder svg {
+  width: 40px;
+  height: 40px;
+}
+
+.avatar-scanning-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #a855f7;
+  box-shadow: 0 0 8px #a855f7;
+  animation: scan-vertical 2s infinite ease-in-out;
+}
+
+.modal-body h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 5px 0;
+  letter-spacing: 1.5px;
+}
+
+.modal-desc {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 20px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* High-Tech Spec Lists */
+.specs-table, .credentials-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.spec-row, .cred-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  padding: 10px 15px;
+}
+
+.spec-row span:first-child, .cred-item span:first-child {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.accent-cyan {
+  color: #00F5FF;
+  text-shadow: 0 0 5px rgba(0, 245, 255, 0.3);
+}
+
+.accent-purple {
+  color: #c084fc;
+  text-shadow: 0 0 5px rgba(192, 132, 252, 0.3);
+}
+
+.success-text {
+  color: #00ff80;
+  text-shadow: 0 0 5px rgba(0, 255, 128, 0.3);
+}
+
+.font-glowing {
+  animation: glow-blink 2s infinite ease-in-out;
+}
+
+.modal-footer {
+  margin-top: 25px;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 3px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 15px;
+  text-transform: uppercase;
+}
+
+/* ─── ANIMATIONS DEFINITIONS ────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 0.95; }
+}
+
+@keyframes tab-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes ring-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes scan-vertical {
+  0%, 100% { top: 0%; }
+  50% { top: 98%; }
+}
+
+@keyframes toast-in {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-overlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-zoom {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes glow-blink {
+  0%, 100% { text-shadow: 0 0 4px currentColor; }
+  50% { text-shadow: 0 0 12px currentColor, 0 0 20px currentColor; }
+}
+
+/* ─── RESPONSIVE NAVBAR ADAPTABILITY ────────────────── */
+@media (max-width: 1024px) {
+  .futuristic-navbar {
+    padding: 0 20px;
+    height: 75px;
+  }
+  
+  .navbar-brand {
+    gap: 8px;
+  }
+  
+  .brand-name {
+    font-size: 19px;
+  }
+  
+  .brand-subtitle {
+    font-size: 8.5px;
+    letter-spacing: 1.5px;
+  }
+  
+  .hex-logo-wrapper {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .navbar-logo-img {
+    height: 30px;
+  }
+  
+  .nav-tab-btn {
+    padding: 6px 12px;
+    min-width: 70px;
+    height: 48px;
+    font-size: 11px;
+  }
+  
+  .tab-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .btn-login, .btn-signup {
+    padding: 8px 15px;
+    font-size: 11px;
+    height: 34px;
+  }
+  
+  .navbar-bottom-plate {
+    width: 200px;
+    bottom: -20px;
+  }
+  
+  .bottom-plate-content {
+    font-size: 9.5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-actions {
+    display: none !important; /* Hide login actions on narrow screens to fit links */
+  }
+  
+  .navbar-bottom-plate {
+    display: none !important;
+  }
+  
+  .navbar-tabs-container {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 94%;
+    z-index: 9999;
+  }
+  
+  .navbar-links {
+    justify-content: space-around;
+    background: rgba(3, 7, 18, 0.9);
+    border: 1px solid rgba(0, 245, 255, 0.35);
+    border-radius: 8px;
+    padding: 8px 5px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
+  }
+  
+  .nav-tab-btn {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
+  
+  .active-indicator {
+    bottom: -6px;
+  }
+}
+
+/* ─── MOOD-HW CLASSIC RED OVERRIDES ─────────────────── */
+body.mood-hw-body .nav-tab-btn.active {
+  color: #ff5500 !important;
+  border-color: rgba(255, 85, 0, 0.5) !important;
+  background: rgba(255, 85, 0, 0.08) !important;
+  box-shadow: 0 0 15px rgba(255, 85, 0, 0.15) !important;
+  text-shadow: 0 0 8px rgba(255, 85, 0, 0.5) !important;
+}
+
+body.mood-hw-body .nav-tab-btn:hover {
+  color: #ff5500 !important;
+  border-color: rgba(255, 85, 0, 0.3) !important;
+}
+
+body.mood-hw-body .active-indicator {
+  background-color: #ff5500 !important;
+  box-shadow: 0 -2px 10px #ff5500, 0 0 15px #ff5500 !important;
+}
+
+body.mood-hw-body .toast-dot-blink,
+body.mood-hw-body .high-tech-alert-toast {
+  border-color: rgba(255, 85, 0, 0.5) !important;
+  border-left-color: #ff5500 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 85, 0, 0.15) !important;
+}
+
+body.mood-hw-body .toast-dot-blink {
+  background-color: #ff5500 !important;
+  box-shadow: 0 0 8px #ff5500 !important;
+}
